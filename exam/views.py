@@ -55,7 +55,14 @@ def result(request):
                 'questions_correct': questions_correct,
                 'questions_wrong': questions_wrong,
                 'questions_not_attempted': questions_not_attempted,
+    
             },
         )
     else:
         return HttpResponse("Invalid request method")
+
+@login_required
+def history(request):
+    # Retrieve all TestResult instances and order them by total_score
+    results = TestResult.objects.all().order_by('-total_score')
+    return render(request, 'history.html', {'results': results})

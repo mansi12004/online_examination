@@ -10,5 +10,6 @@
     <p>Questions Correct: {{ questions_correct }}</p>
     <p>Questions Wrong: {{ questions_wrong }}</p>
     <p>Questions Not Attempted: {{ questions_not_attempted }}</p>
+    <a href="{% url 'history' %}" class="btn btn-primary">View History</a>
 </div>
 {% endblock content %}
