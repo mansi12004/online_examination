@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    /* Style for the big blue button */
+    .big-button {
+        display: inline-block;
+        padding: 20px 40px;
+        font-size: 24px;
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for the button */
+    .big-button:hover {
+        background-color: darkblue;
+    }
+</style>
+
+<div style="text-align: center;">
+    <h1><u>welcome Students</u></h1>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;">
+    <h2>click on test button to get into test
+   </h2> </div><br>
+   <br>
+   
+<div style="text-align: center;">
+    <a href="{% url 'test' %}" class="big-button">Test</a>
+</div>
+
+<!-- The rest of your HTML content -->
+
+{% endblock content %}

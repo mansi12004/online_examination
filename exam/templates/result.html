@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <h1 style="color: gray;"><u>Test Result</u></h1>
+</div>
+<br>
+<div>
+    <p>Total Questions: {{ total_questions }}</p>
+    <p>Questions Attempted: {{ questions_attempted }}</p>
+    <p>Questions Correct: {{ questions_correct }}</p>
+    <p>Questions Wrong: {{ questions_wrong }}</p>
+    <p>Questions Not Attempted: {{ questions_not_attempted }}</p>
+</div>
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    /* Style for the submit button */
+    button[type="submit"] {
+        background-color: blue;
+        color: white;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Hover effect for the button */
+    button[type="submit"]:hover {
+        background-color: darkblue;
+    }
+</style>
+
+<div>
+    <h1 style="color: gray;"><u>Welcome to Test</u></h1>
+</div>
+<br>
+<div>
+    <form action="{% url 'result' %}" method="post">
+        {% csrf_token %}
+        {% for que in ques %}
+        <div>
+            <h2>{{ forloop.counter }}. {{ que.question }}</h2>
+            <h3><input type="radio" value="{{ que.option1 }}" name="options{{ forloop.counter }}"> {{ que.option1 }}
+            </h3>
+            <h3><input type="radio" value="{{ que.option2 }}" name="options{{ forloop.counter }}"> {{ que.option2 }}
+            </h3>
+            <h3><input type="radio" value="{{ que.option3 }}" name="options{{ forloop.counter }}"> {{ que.option3 }}
+            </h3>
+            <h3><input type="radio" value="{{ que.option4 }}" name="options{{ forloop.counter }}"> {{ que.option4 }}
+            </h3>
+        </div>
+        <br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock content %}
