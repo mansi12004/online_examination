@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <h1 style="color: gray;"><u>Exam Already Taken</u></h1>
+</div>
+<br>
+<div>
+    <p>You've already taken the exam. You cannot take it again.</p>
+    <p>Your previous result:</p>
+    <ul>
+        <li>Previous Score : {{result.total_score}}</li>
+        <!-- Add any other relevant result information here -->
+    </ul>
+</div>
+{% endblock content %}

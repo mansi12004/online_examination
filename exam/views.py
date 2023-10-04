@@ -9,8 +9,15 @@ def home(request):
 
 @login_required
 def test(request):
-    ques = Test.objects.all()
-    return render(request, 'test.html', {"ques": ques})
+    existing_result = TestResult.objects.filter(user=request.user).first()
+    if existing_result:
+        print(existing_result)
+        return render(request, 'exam_already_taken.html', {'result': existing_result})
+    else:
+        # Student has not taken the exam, proceed to the exam page
+        ques = Test.objects.all()
+        return render(request, 'test.html', {"ques": ques})
+
 @login_required
 def result(request):
     if request.method == 'POST':
@@ -36,12 +43,12 @@ def result(request):
         # Calculate the total score or any other relevant data
         total_score = questions_correct  # You can modify this as per your scoring logic
 
-        # Create a new TestResult instance and save it to the database
+        
         test_result = TestResult(
-            user=request.user,  # Assuming you are using Django's built-in User model
-            test=Test.objects.first(),  # Replace with the actual test instance
+            user=request.user,  
+            test=Test.objects.first(),  
             total_score=total_score,
-            # Add other fields as needed
+            
         )
         test_result.save()
 
@@ -66,3 +73,9 @@ def history(request):
     # Retrieve all TestResult instances and order them by total_score
     results = TestResult.objects.all().order_by('-total_score')
     return render(request, 'history.html', {'results': results})
+
+
+@login_required
+def exam_already_taken(request):
+    # This view can render a page indicating that the exam has already been taken
+    return render(request, 'exam_already_taken.html')
